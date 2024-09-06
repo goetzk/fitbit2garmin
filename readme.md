@@ -75,6 +75,15 @@ you want the exported data to start from:
 fitbit2garmin dump-all -s YYYY-MM-01
 ```
 
+You will be prompted to authenticate to FitBit via OAuth in a web browser,
+giving fitbit2garmin access to your account.
+On the authentication screen you may see "Warning! This app is not using HTTPS
+to securely obtain your permission", this is because fitbit2garmin redirects to
+a webserver running on localhost - over http - after authentication succeeds.
+
+https://community.fitbit.com/t5/Web-API-Development/quot-Warning-This-app-is-not-using-HTTPS-to-securely-obtain-your-permission/td-p/1317049
+
+
 > Tip: The process will take several hours or even days depending on how many
         years of data you have. You can speed-up the process by adjusting the
         start/end date used by the script using the `-s YYYY-MM-DD` and
