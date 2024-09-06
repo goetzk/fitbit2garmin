@@ -83,11 +83,12 @@ a webserver running on localhost - over http - after authentication succeeds.
 
 https://community.fitbit.com/t5/Web-API-Development/quot-Warning-This-app-is-not-using-HTTPS-to-securely-obtain-your-permission/td-p/1317049
 
-
 > Tip: The process will take several hours or even days depending on how many
         years of data you have. You can speed-up the process by adjusting the
         start/end date used by the script using the `-s YYYY-MM-DD` and
         `-e YYYY-MM-DD` flags.
+        If fetching many years of activity it could take up to 10 minutes for
+        this script to start displaying progress in the CLI.
 
 > Tip: You can stop and resume the download at any time by just killing and
        re-running the above command. The CLI will continue automatically from
