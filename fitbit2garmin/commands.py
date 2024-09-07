@@ -146,9 +146,9 @@ async def dump_weight(
         weight_file_path = weight_directory / f"weight.{date_range}.csv"
         weight_done_file_path = cache_directory / f".weight.{date_range}"
         if weight_done_file_path.exists():
-            logging.info(f"{progress} Weight data for {date_range} already processed.")
+            logging.info(f"{progress} Weight data for {start_date_range} - {end_date_range} already processed.")
             continue
-        logging.info(f"{progress} Fetching weight data for {date_range}.")
+        logging.info(f"{progress} Fetching weight data for {start_date_range} - {end_date_range}.")
         get_weight_timeseries = run_aiohttp_fitbit_api_call(
             f"{progress} weight-{date_range}",
             auth_file_path,
@@ -157,7 +157,7 @@ async def dump_weight(
         weights = await get_weight_timeseries(start_date_range, end_date_range)
         entries = list(weights)
         if not entries:
-            logging.info(f"{progress} No weight data for {date_range} found.")
+            logging.info(f"{progress} No weight data for {start_date_range} - {end_date_range} found.")
             weight_done_file_path.touch()
             continue
         # Create weight csv file
@@ -170,7 +170,7 @@ async def dump_weight(
                     file=fw,
                 )
         weight_done_file_path.touch()
-        logging.info(f"{progress} Fetched weight data for {date_range}.")
+        logging.info(f"{progress} Fetched weight data for {start_date_range} - {end_date_range}.")
 
 
 async def dump_activity(
@@ -200,10 +200,10 @@ async def dump_activity(
         activity_done_file_path = cache_directory / f".activity.{date_range}"
         if activity_done_file_path.exists():
             logging.info(
-                f"{progress} Activity data for {date_range} already processed."
+                f"{progress} Activity data for {start_date_range} - {end_date_range} already processed."
             )
             continue
-        logging.info(f"{progress} Fetching activity data for {date_range}.")
+        logging.info(f"{progress} Fetching activity data for {start_date_range} - {end_date_range}.")
         get_activity_timeseries = run_aiohttp_fitbit_api_call(
             f"{progress} activity-{date_range}",
             auth_file_path,
@@ -212,7 +212,7 @@ async def dump_activity(
         activities = await get_activity_timeseries(start_date_range, end_date_range)
         entries = [activity for activity in activities if int(activity["steps"]) > 0]
         if not entries:
-            logging.info(f"{progress} No activity data for {date_range} found.")
+            logging.info(f"{progress} No activity data for {start_date_range} - {end_date_range} found.")
             activity_done_file_path.touch()
             continue
         # Create activity csv file
@@ -228,4 +228,4 @@ async def dump_activity(
                     file=fw,
                 )
         activity_done_file_path.touch()
-        logging.info(f"{progress} Fetched activity data for {date_range}.")
+        logging.info(f"{progress} Fetched activity data for {start_date_range} - {end_date_range}.")
