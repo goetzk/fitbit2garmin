@@ -94,6 +94,9 @@ https://community.fitbit.com/t5/Web-API-Development/quot-Warning-This-app-is-not
        re-running the above command. The CLI will continue automatically from
        where it left.
 
+Files will be created in a 'f2g' subdirectory.
+
+
 3. From [Garmin Connect][garmin:connect], log into your account then select the
 import icon in the top right corner of the page (cloud with upward arrow icon).
 
